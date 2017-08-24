@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Mäppchen
@@ -42,11 +43,15 @@ namespace Mäppchen
             {
                 ausgewähltesMäppchen.Schließen();
                 btnÖffnenSchließen.Text = "Öffnen";
+                btnAddStift.Enabled = false;
+                btnRemoveStift.Enabled = false;
             }
             else
             {
                 ausgewähltesMäppchen.Öffnen();
                 btnÖffnenSchließen.Text = "Schließen";
+                btnAddStift.Enabled = true;
+                btnRemoveStift.Enabled = true;
             }
         }
         private void btnAddStift_Click(object sender, System.EventArgs e)
@@ -56,6 +61,27 @@ namespace Mäppchen
             else
                 MessageBox.Show("Es ist die maximale Anzahln von Stiften im Mäppchen!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             RefreshListView();
+        }
+        private void btnRemoveStift_Click(object sender, System.EventArgs e)
+        {
+            if (ausgewähltesMäppchen.Inhalt.Count > 0)
+            {
+                Random r = new Random(DateTime.Now.Ticks.GetHashCode());
+                ausgewähltesMäppchen.StiftRausnehmen(ausgewähltesMäppchen.Inhalt[r.Next(0, ausgewähltesMäppchen.Inhalt.Count - 1)]);
+                RefreshListView();
+            }
+        }
+
+        private void lstvStifte_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstvStifte.SelectedItems.Count == 1 && ausgewähltesMäppchen.Offen)
+            {
+                if (!ausgewähltesMäppchen.Inhalt[int.Parse(lstvStifte.SelectedItems[0].Name)].Benutzen())
+                    ausgewähltesMäppchen.StiftRausnehmen(ausgewähltesMäppchen.Inhalt[int.Parse(lstvStifte.SelectedItems[0].Name)]);
+
+                RefreshListView();
+
+            }
         }
     }
 }

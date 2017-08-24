@@ -37,10 +37,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lstvStifte = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,6 +55,7 @@
             this.btnRemoveStift.TabIndex = 21;
             this.btnRemoveStift.Text = "Stift rausnehmen";
             this.btnRemoveStift.UseVisualStyleBackColor = true;
+            this.btnRemoveStift.Click += new System.EventHandler(this.btnRemoveStift_Click);
             // 
             // btnAddStift
             // 
@@ -129,27 +130,24 @@
             // 
             this.lstvStifte.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader2});
             this.lstvStifte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstvStifte.FullRowSelect = true;
             this.lstvStifte.Location = new System.Drawing.Point(0, 0);
             this.lstvStifte.Name = "lstvStifte";
             this.lstvStifte.Size = new System.Drawing.Size(395, 265);
             this.lstvStifte.TabIndex = 0;
             this.lstvStifte.UseCompatibleStateImageBehavior = false;
             this.lstvStifte.View = System.Windows.Forms.View.Details;
+            this.lstvStifte.DoubleClick += new System.EventHandler(this.lstvStifte_DoubleClick);
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Typ";
+            this.columnHeader1.Text = "Material";
             this.columnHeader1.Width = 76;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Material";
-            this.columnHeader2.Width = 78;
             // 
             // columnHeader3
             // 
@@ -165,6 +163,11 @@
             // 
             this.columnHeader5.Text = "Länge";
             this.columnHeader5.Width = 73;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Benutzungen";
+            this.columnHeader2.Width = 79;
             // 
             // MäppchenInhalt
             // 
@@ -194,9 +197,9 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ListView lstvStifte;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

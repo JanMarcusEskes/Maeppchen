@@ -30,6 +30,10 @@ namespace Mäppchen
         {
             get { return material; }
         }
+        public int Benutzungen
+        {
+            get { return benutzungen; }
+        }
 
         public Stift()
         {
@@ -71,9 +75,18 @@ namespace Mäppchen
             if (material != "Füller" && material != "Filsstift" && material != "Edding")
             {
                 länge -= 0.1;
-                if (benutzungen > 10)
-                    zustand = "stumpf";
+                if (benutzungen > 15)
+                    zustand = "Stumpf";
             }
+            else
+            {
+                if (benutzungen > 1000)
+                {
+                    MessageBox.Show("Der Stift ist leer", "Stift leer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+            }
+            benutzungen++;
             return true;
         }
         public bool Spitzen()
@@ -87,7 +100,7 @@ namespace Mäppchen
             {
                 länge -= 0.1;
                 benutzungen = 0;
-                zustand = "spitz";
+                zustand = "Spitz";
             }
             return true;
         }
@@ -96,11 +109,11 @@ namespace Mäppchen
         {
             ListViewItem lstvItem = new ListViewItem();
             lstvItem.Name = m.Inhalt.IndexOf(s).ToString();
-            lstvItem.Text = "Stift";
-            lstvItem.SubItems.Add(s.Material);
+            lstvItem.Text = s.Material;
             lstvItem.SubItems.Add(s.Farbe);
             lstvItem.SubItems.Add(s.Zustand);
             lstvItem.SubItems.Add(s.Länge.ToString());
+            lstvItem.SubItems.Add(s.Benutzungen.ToString());
 
             return lstvItem;
         }

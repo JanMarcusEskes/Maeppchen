@@ -99,7 +99,7 @@
             this.nudMaxStifte.Size = new System.Drawing.Size(100, 20);
             this.nudMaxStifte.TabIndex = 7;
             this.nudMaxStifte.Value = new decimal(new int[] {
-            1,
+            25,
             0,
             0,
             0});

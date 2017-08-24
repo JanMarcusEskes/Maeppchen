@@ -10,7 +10,6 @@ namespace Mäppchen
         //Lokale Variabelen
         private String material;
         private String form;
-        private int halter;
         private bool offen;
         private int maxStifte;
         private List<Stift> inhalt = new List<Stift>();
@@ -52,11 +51,10 @@ namespace Mäppchen
             maxStifte = MaxStifte;
             Farbe = farben[new Random(DateTime.Now.Ticks.GetHashCode()).Next(0, farben.Length - 1)];
         }
-        public Stift StiftRausnehmen()
+        public Stift StiftRausnehmen(Stift stift)
         {
-            Stift rückgabe = inhalt.Last();
-            inhalt.Remove(rückgabe);
-            return rückgabe;
+            inhalt.Remove(stift);
+            return stift;
         }
         public bool StiftReinlegen(Stift stift)
         {
